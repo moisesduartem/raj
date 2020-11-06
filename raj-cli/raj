@@ -1,0 +1,43 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Raj console utilization example script.
+ */
+/**
+ * Require composer autoload
+ */
+require_once __DIR__ . '/src/vendor/autoload.php';
+/**
+ * Import necessary packages.
+ */
+use League\CLImate\CLImate;
+use Raj\Raj;
+/**
+ * Import commands that raj will use.
+ */
+use Raj\Commands\Generate;
+use Raj\Commands\Database;
+/**
+ * Instanciates Raj passing
+ * 1) Directory path
+ * 2) Console arguments
+ * 3) Instance of League\CLImate\CLImate phpleague (by the way... awesome!)
+ */
+$raj = new Raj(__DIR__, $argv, new CLImate);
+/**
+ * Provides commands.
+ * MUST be Raj\Command children!
+ */
+$raj->add(new Generate());
+$raj->add(new Database());
+/**
+ * Start the raj console listener after
+ * provides the Raj\Command children.
+ */
+$raj->start();
+/**
+ * writed for Lazlo framework
+ * by
+ * Moisés Mariano
+ * github.com/moisesduartem
+ */
