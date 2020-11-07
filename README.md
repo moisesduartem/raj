@@ -61,5 +61,6 @@ $raj->start();
 7 - Now if you put `php raj`, `php raj -h` or `php raj --help`, you i'll see your commands and will be able to execute them!
 
 ---
-Moisés Mariano 
-github.com/moisesduartem/raj
+- Moisés Mariano 
+- [Raj Project](http://github.com/moisesduartem/raj)
+- [PHP League CLImate Library](https://climate.thephpleague.com/)
