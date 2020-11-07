@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Raj;
 
+/**
+ * Class RajStyle
+ * @package Raj
+ */
 abstract class RajStyle
 {
     protected function commandSummary() : void

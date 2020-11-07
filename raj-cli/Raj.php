@@ -7,14 +7,39 @@ use Exception;
 use League\CLImate\CLImate;
 use Raj\Command;
 
+/**
+ * Class Raj
+ * @package Raj
+ */
 final class Raj extends RajStyle
 {
-    protected ?array $commands; 
+    /**
+     * @var array|null
+     */
+    protected ?array $commands;
+    /**
+     * @var string
+     */
     protected string $root;
+    /**
+     * @var array
+     */
     protected array $argv;
+    /**
+     * @var CLImate
+     */
     protected CLImate $climate;
+    /**
+     * @var int
+     */
     protected int $argumentsCount;
 
+    /**
+     * Raj constructor.
+     * @param string $root
+     * @param array $argv
+     * @param CLImate $climate
+     */
     public function __construct(string $root, array $argv, CLImate $climate)
     {
         $this->root = $root;
@@ -24,7 +49,10 @@ final class Raj extends RajStyle
         $this->commands = [];
     }
 
-    public function execute()
+    /**
+     *
+     */
+    public function execute() : void
     {
         $command = $this->argv[0];
         if (!isset($this->argv[1])) {
@@ -53,11 +81,17 @@ final class Raj extends RajStyle
         $this->error('Action does not exist.');
     }
 
+    /**
+     * @param \Raj\Command $command
+     */
     public function add(Command $command) : void
     {
         $this->commands[] = $command;
     }
 
+    /**
+     *
+     */
     public function start(): void
     {
         if ($this->argumentsCount == 0 || $this->argv[0] == '-h' || $this->argv[0] == '--help'):
@@ -67,12 +101,21 @@ final class Raj extends RajStyle
         endif;
     }
 
+    /**
+     * @param array $argv
+     * @return array
+     */
     public function sliceFirst(array $argv) : array
     {
         return array_slice($argv, 1);
     }
 
-    private function error(string $message, string $wrong = null, string $right = null)
+    /**
+     * @param string $message
+     * @param string|null $wrong
+     * @param string|null $right
+     */
+    private function error(string $message, string $wrong = null, string $right = null) : void
     {
         $this->climate->backgroundRed()->text("\n $message");
         if ($wrong != null && $right != null) {
